@@ -27,6 +27,5 @@ regbtn.addEventListener('click', async () => {
         alert('회원가입 성공!!');
     }).catch((error) => {
         alert('회원가입 실패!!');
-        console.log(data.datail);
     })
 });
