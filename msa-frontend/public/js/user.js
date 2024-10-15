@@ -23,9 +23,12 @@ regbtn.addEventListener('click', async () => {
     })
 
     // 서버로의 응답 처리
-    .then(res => {
+    .then((resp)=> resp.json())
+    .then((data) => {
         alert('회원가입 성공!!');
+        console.log(data.mno, data.userid, data.regdate);
     }).catch((error) => {
         alert('회원가입 실패!!');
-    })
+        console.log(error);
+    });
 });
