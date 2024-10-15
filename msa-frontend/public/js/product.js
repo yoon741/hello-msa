@@ -20,10 +20,12 @@ prdbtn.addEventListener('click', async () => {
         },
         body: JSON.stringify(jsondata)
     })
-    .then(res=> {
+    .then((resp)=> resp.json())
+    .then((data) => {
         alert('상품등록 성공!!');
+        console.log(data.pno, data.name, data.regdate);
     }).catch((error) => {
         alert('상품등록 실패!!');
-        console.log(data.datail);
+        console.log(error);
     })
 });
