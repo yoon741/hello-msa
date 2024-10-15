@@ -1,15 +1,12 @@
-from fastapi import APIRouter
-from pydantic import BaseModel
+from fastapi import APIRouter, Depends
+from sqlalchemy.orm import session
+
+from schema.user import User, UserBase
+from service.database import get_db
 
 router = APIRouter()
 
-class User(BaseModel):
-    userid: str
-    passwd: str
-    name: str
-    email: str
-
-@router.post('/user')
-async def new_user(user: User):
+@router.post('/user', response_model=User) # 넘어오는 응답 형식 User
+async def new_user(user: UserBase, db:session=Depends(get_db)):
     print(user)
     return {'msg': 'ok'}
