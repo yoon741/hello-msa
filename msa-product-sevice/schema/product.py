@@ -15,4 +15,13 @@ class Product(ProductBase):
     # ORM 맵핑을 위한 설정
     # 데이터베이스 테이블 각 행 <-> pydantic
     class Config:
-        from_attribute=True
+        from_attributes=True
+
+class ProductList(BaseModel):
+    pno: int
+    name: str
+    price: int
+    regdate: str
+
+    class Config:
+        from_attributes=True  # from_attributes  < s 필수
