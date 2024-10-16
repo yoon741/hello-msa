@@ -20,3 +20,7 @@ def register(db: Session, user: UserBase): # User라는 형식으로 route로 �
 # 회원 목록 조회
 def userlist(db: Session):
     return db.query(User.mno, User.userid, User.name, User.regdate).all()
+                                                # 조건에 맞는 결과 몽땅 보이게 할때 all()
+# 회원 상세 조회
+def userone(db: Session, mno: int):
+    return db.query(User).filter(User.mno == mno).first()  # 조건에 맞는 결과 하나만 보이게 할때 first()
