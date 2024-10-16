@@ -21,4 +21,9 @@ router.get('/product', function(req, res, next) {
   res.sendFile(__dirname + '/views/product.html')
 });
 
+/* products registration */
+router.get('/products', function(req, res, next) {
+  res.sendFile(__dirname + '/views/products.html')
+});
+
 module.exports = router;
