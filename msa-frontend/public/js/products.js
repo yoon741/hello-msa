@@ -28,14 +28,15 @@ const displayProductList = (products) => {
     // products = [{'name':'테스트하기', 'price':99999, 'regdate':'2024-09-45'}];
                                                 // 내부적 테스트 할 수 있는 테스트용 데이터
     const productlist = document.querySelector('#product-list');
+    console.log(products);
 
     let html = '<ul>';
     for (const p of products) {   // product > p로 줄임
         html += `<li>
-            회원 번호 : ${p.pno},
-            회원 아이디 : ${p.name},
-            회원 이름 : ${p.price},
-            회원 가입일 : ${p.regdate}
+            상품번호 : ${p.pno},
+            상품명 : <a href="/product/${p.pno}">${p.name}</a>,
+            상품가격: ${p.price},
+            상품등록일 : ${p.regdate}
         </li>`
     }
     html += '</ul>';    // < 이부분이 클라이언트 사이드 랜더링 형식임
