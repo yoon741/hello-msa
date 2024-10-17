@@ -25,3 +25,11 @@ class UserList(BaseModel):
     class Config:
         from_attributes=True    # ORM으로 넘어온 데이터를
                                 # pydantic형식으로 쉽게 변환 (pydantic형식 = json형식)
+
+class UserLogin(BaseModel):
+    userid: str
+    passwd: str
+
+class Token(BaseModel):
+    access_token: str
+    token_type: str
