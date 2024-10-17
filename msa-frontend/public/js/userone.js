@@ -8,14 +8,16 @@ document.addEventListener('DOMContentLoaded', async () => {  // 좀더 세련되
         displayUserOne(user);
     } catch (e) {
         console.log(e);
-        alert('회원 상세 정보 조회 실패!');
+        // alert('회원 상세 정보 조회 실패!');
     }
 });
 
 const getUserOne = async (mno) => {
     let url = `http://127.0.0.1:8000/user/${mno}`
     const res = await fetch(url);
-    if (res.ok) {
+    if (res.status === 404) {   // 조회가 성공적으로 되었으면  (res.ok = true > bull값이기 때문에 정해져있는 속성임)
+        location.href = '/notfound';
+    } else if (res.ok) {
         data = await res.json();
         return data;
     } else{
