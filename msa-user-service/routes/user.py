@@ -35,10 +35,11 @@ async def user_one(mno: int, db:session=Depends(get_db)):
 
     return User.model_validate(user)
 
+
 @router.post('/userlogin', response_model=Optional[Token])
 async def user_login(login: UserLogin, db:session=Depends(get_db)):
     token = userlogin(login, db)
-    print(token)
+    # print(token)
 
     if token is None:
         raise HTTPException(401, '로그인 실패! - 아이디 혹은 비밀번호가 다릅니다!')
