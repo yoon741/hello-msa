@@ -24,8 +24,20 @@ loginbtn.addEventListener('click', () => {
     })
     // 서버로의 응답 처리
     .then(res => {
-        if (res.status === 401) { alert('로그인 실패!!'); }
-        else if (res.status === 200) { alert('로그인 성공!!'); }
+        if (res.status === 401) {
+            alert('로그인 실패!!');
+        } else if (res.status === 200) {
+            return res.json();
+        }  //return 에서 넘긴 것을 data로 받는다.
+    }).then(data => {
+        if(data) {
+            console.log(data.access_token);
+            // localStorage.setItem('token', data.access_token);  // localStorage : 자바스크립트 내 특정 저장소에 저장됨
+            sessionStorage.setItem('token', data.access_token);  // localStorage : 자바스크립트 내 특정 저장소에 저장됨
+            alert('로그인 성공!!');
+        } else {
+            alert('로그인 토큰 확인 불가!');
+        }
     }).catch((error) => {
         alert('로그인 오류 발생!!');
     });
