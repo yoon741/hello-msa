@@ -23,3 +23,18 @@ def productlist(db: Session):
 # 상품 상세 조회
 def productone(db: Session, pno: int):
     return db.query(Product).filter(Product.pno == pno).first()
+
+# 상품 상세 삭제
+def productdelete(db: Session, pno: int):
+    # 삭제할 상품 조회 >
+    product = db.query(Product).filter(Product.pno == pno).first()
+
+    if product: # 삭제할 상품이 존재한다면
+        db.delete(product)  # 받아온 대상을 삭제
+        db.commit()         # 삭제한 것을 적용
+    else:  # 만약삭제하지 못했다면 return
+        return None
+
+    # 삭제한 상품수를 직접 return 함
+    # 만일, 프로그래밍으로 삭제한 상품수를 return하려면 core orm을 이용하라 것! (db.execute(delete~))
+    return 1

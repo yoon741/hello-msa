@@ -6,7 +6,7 @@ window.addEventListener('load', async () => {
         displayProductList(products);             // 서버로부터 받아온 데이터를 걸러서 출력
     } catch (e) {
         console.log(e);
-        alert('상품 목록 조회 실패!');
+        alert('상품 목록 fetch 실패!');
     }
 });
 
@@ -36,10 +36,26 @@ const displayProductList = (products) => {
             상품번호 : ${p.pno},
             상품명 : <a href="/product/${p.pno}">${p.name}</a>,
             상품가격: ${p.price},
-            상품등록일 : ${p.regdate}
+            상품등록일 : ${p.regdate},
+             [<a href="javascript:pmodify('${p.pno}')">수정</a>],
+             [<a href="javascript:premove('${p.pno}')">삭제</a>]
         </li>`
     }
     html += '</ul>';    // < 이부분이 클라이언트 사이드 랜더링 형식임
 
     productlist.innerHTML = html; // 바로 위에서 정의된 html을 productlist가 가르키는 자리에 출력되라
+};
+
+const pmodify = (pno) => {
+    alert('수정되었습니다.')
+}
+const premove = async (pno) => {
+    if (!confirm('정말로 삭제하시겠습니까?')) return;
+
+    let url = `http://127.0.0.1:8050/product/${pno}`;
+    const res = await fetch(url, { method: 'delete' });  // http 메서드 사용시 delete 사용
+    if (res.ok) {
+        console.log(res);
+        location.href = '/products';  // 클라이언트측 코드 사용시 location.href (서버측 코드 사용 시 수정할땐 리다이렉션 사용)
+    }
 };
