@@ -3,9 +3,9 @@ from typing import Optional
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 
-from schema.product import Product, ProductBase, ProductList
+from schema.product import ProductBase, Product, ProductList
 from service.database import get_db
-from service.product import register, productlist, productone, productdelete
+from service.product import register, productlist, productone, productdelete, productupdate
 
 router = APIRouter()
 
@@ -35,5 +35,14 @@ async def product_one(pno:int, db:Session=Depends(get_db)):
 @router.delete('/product/{pno}', response_model=int)
 async def product_delete(pno:int, db:Session=Depends(get_db)):
     result = productdelete(db,pno)
+
+    return result
+
+@router.put('/product', response_model=int)
+async def product_update(product: Product, db:Session=Depends(get_db)):
+    result = productupdate(db,product)
+
+    if result is None:
+        raise HTTPException(404, 'Product not found')
 
     return result
