@@ -47,13 +47,16 @@ const displayProductList = (products) => {
 };
 
 const pmodify = (pno) => {
-    alert('수정되었습니다.')
+
+    let url = `http://127.0.0.1:3000/product_put/${pno}`;
+    location.href=url;
 }
+
 const premove = async (pno) => {
     if (!confirm('정말로 삭제하시겠습니까?')) return;
 
     let url = `http://127.0.0.1:8050/product/${pno}`;
-    const res = await fetch(url, { method: 'delete' });  // http 메서드 사용시 delete 사용
+    const res = await fetch(url, { method: 'delete' });  // http 메서드 delete 사용
     if (res.ok) {
         console.log(res);
         location.href = '/products';  // 클라이언트측 코드 사용시 location.href (서버측 코드 사용 시 수정할땐 리다이렉션 사용)

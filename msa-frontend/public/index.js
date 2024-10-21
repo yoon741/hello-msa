@@ -36,15 +36,7 @@ router.get('/secure', function(req, res, next) {
   res.sendFile(__dirname + '/views/secure.html')
 });
 
-/* naver api login */
-router.get('/login/naver', function(req, res, next) {
-  res.sendFile(__dirname + '/views/naverlogin.html')
-});
-
-/* naver api callback */
-router.get('/callback/naver', function(req, res, next) {
-  res.sendFile(__dirname + '/views/callbacknaver.html')
-});
+// ---
 
 /* product registration */
 router.get('/product', function(req, res, next) {
@@ -60,5 +52,24 @@ router.get('/products', function(req, res, next) {
 router.get('/product/:pno', function(req, res, next) {
   res.sendFile(__dirname + '/views/productone.html')
 });
+
+/* product update */
+router.get('/product_put/:pno', function(req, res, next) {
+  res.sendFile(__dirname + '/views/product_put.html')
+});
+
+
+// ---
+
+/* naver api login */
+router.get('/login/naver', function(req, res, next) {
+  res.sendFile(__dirname + '/views/naverlogin.html')
+});
+
+/* naver api callback */
+router.get('/callback/naver', function(req, res, next) {
+  res.sendFile(__dirname + '/views/callbacknaver.html')
+});
+
 
 module.exports = router;

@@ -1,8 +1,8 @@
 // 상품등록 버튼 이벤트 처리
-const prdbtn = document.querySelector('#prdbtn');
+const regbtn = document.querySelector('#regbtn');
 const productfrm = document.productfrm;
 
-prdbtn.addEventListener('click', async () => {
+regbtn.addEventListener('click', async () => {
     const formData = new FormData(productfrm);
 
     let jsondata = {};
