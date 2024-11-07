@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', async () => {  // 좀더 세련되
 });
 
 const getUserOne = async (mno) => {
-    let url = `http://127.0.0.1:8000/user/${mno}`
+    let url = `http://${sessionStorage.getItem('usersrvURL')}/user/${mno}`
     const res = await fetch(url);
     if (res.status === 404) {   // 조회가 성공적으로 되었으면  (res.ok = true > bull값이기 때문에 정해져있는 속성임)
         location.href = '/notfound';

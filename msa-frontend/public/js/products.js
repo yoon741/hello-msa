@@ -12,7 +12,7 @@ window.addEventListener('load', async () => {
 
 // 상품 데이터 가져오기     await 사용시 async 넣어줘야 함
 const getProductList = async () => {
-    let url = 'http://127.0.0.1:8050/products'
+    let url = `http://${sessionStorage.getItem(`prosuctsrvURL`)}:8050/products`
     const res = await fetch(url);
     if (res.ok) {   // 조회가 성공적으로 되었으면  (res.ok = true > bull값이기 때문에 정해져있는 속성임)
         const data = await res.json();   // json으로 담기 (그 정보를 products에 담김)

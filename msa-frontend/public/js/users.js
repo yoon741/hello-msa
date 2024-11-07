@@ -11,7 +11,7 @@ window.addEventListener('load', async () => {
 
 // 회원 데이터 가져오기     await 사용시 async 넣어줘야 함
 const getUserList = async () => {
-    let url = 'http://127.0.0.1:8000/users'
+    let url = `http://${sessionStorage.getItem('usersrvURL')}/users`
     const res = await fetch(url);
     if (res.ok) {   // 조회가 성공적으로 되었으면
         const data = await res.json();   // json으로 담기 그 정보를 users에 담김 (반드시 json형태로 보내야함)

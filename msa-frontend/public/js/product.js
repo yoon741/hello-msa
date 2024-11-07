@@ -11,7 +11,7 @@ regbtn.addEventListener('click', async () => {
     });
     console.log(jsondata);
 
-    const res = await fetch('http://127.0.0.1:8050/product', // 서버가 다르기때문에 ip까지 작성
+    const res = await fetch('http://${sessionStorage.getItem(\'prosuctsrvURL\')}:8050/product', // 서버가 다르기때문에 ip까지 작성
     {
         method: 'POST',
         headers: {

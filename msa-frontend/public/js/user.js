@@ -12,7 +12,7 @@ regbtn.addEventListener('click', async () => {
     });
     console.log(jsondata);   // 버튼누르면 입력한 값이 json 형식으로 넘어오게
 
-    const res = await fetch('http://127.0.0.1:8000/user',   // 마이크로 서비스 형식 (예전엔 모놀리틱 형식)
+    const res = await fetch(`http://${sessionStorage.getItem('usersrvURL')}/user`,   // 마이크로 서비스 형식 (예전엔 모놀리틱 형식)
     {                                            // 사용할때마다 포트를 변경해 다중 서버로 사용
         method: 'POST',
         headers: {

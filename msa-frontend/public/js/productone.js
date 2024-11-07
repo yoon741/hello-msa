@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 // 상품 데이터 가져오기     await 사용시 async 넣어줘야 함
 const getProductOne = async (pno) => {
-    let url = `http://127.0.0.1:8050/product/${pno}`
+    let url = `http://${sessionStorage.getItem('prosuctsrvURL')}:8050/product/${pno}`
     const res = await fetch(url);
     if (res.status === 404) {   // res.ok와 동일한 내용
         location.href = '/notfound';
