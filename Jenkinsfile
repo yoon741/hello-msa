@@ -3,7 +3,7 @@ pipeline {
     
     environment {
         DOCKER_IMEAGE_OWNER = 'yoon741'
-        DOCEKR_IMEAGE_TAG = 'latest'
+        DOCEKR_IMEAGE_TAG = 'v0'
         DOCKER_TOKEN = credentials('dockerhub')
     }
     
@@ -12,7 +12,7 @@ pipeline {
             steps {
                 sh '''
                 rm -rf hello-msa
-                git clone https://github.com/play10grounds/hello-msa.git
+                git clone https://github.com/yoon741/hello-msa.git
                 '''
             }
         }
