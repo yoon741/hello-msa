@@ -2,7 +2,7 @@ let createError = require('http-errors');
 let express = require('express');
 let path = require('path');
 // nodejs에서 제공하는 세션관리 패키지
-var session = require('express-session'); // alt + enter로 axios 설치하기
+var session = require('express-session')
 // 환경변수 설정을 위해 템플릿 엔진 지정
 const handlebars = require('express-handlebars')
 
@@ -20,12 +20,11 @@ app.set('view engine', 'handlebars');
 app.set('views', path.join(__dirname, 'public/handlebars'));
 
 // session 설정
-// resave, saveUninitialized - 로그인하지 않은 클라이언트의 세션은 데이터 저장 X
-// 로그인 했을 경우에만 저장
+// resave, saveUninitialized - 로그인하지 않은 클라이언트의 세션은 저장 x
 app.use(session({
-  secret: 'Hello, world!!',     // 세션 데이터 암호화 시 사용하는 비밀키
-  resave: false,  // 세션 데이터 수정 시 재저장 여부
-  saveUninitialized: false   // 세션 초기화 관련 설정
+  secret: 'Hello, World!!', // 세션 데이터 암호화시 사용하는 비밀키
+  resave: false, // 세션 데이터 수정시 재저장 여부
+  saveUninitialized: false // 세션 초기화 관련 설정
 }));
 
 app.use(express.json());

@@ -5,16 +5,16 @@ var router = express.Router();
 const usersrvURL = process.env.USER_SRV_URL || '127.0.0.1';
 const productsrvURL = process.env.PRODUCT_SRV_URL || '127.0.0.1';
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  // res.sendFile(__dirname + '/views/index.html')
-  res.render('index', {layout: false,
-    usersrvURL:usersrvURL, productsrvURL:productsrvURL}) // 인덱스파일을 보낼 곳은 {}
-});
-
-/* 404 not found page. */
+/* 404 not found */
 router.get('/notfound', function(req, res, next) {
   res.sendFile(__dirname + '/views/notfound.html')
+});
+
+/* GET home page. */
+router.get('/', function(req, res, next) {
+  //res.sendFile(__dirname + '/views/index.html')
+  res.render('index', { layout: false,
+      usersrvURL: usersrvURL, productsrvURL: productsrvURL });
 });
 
 /* user registration */
@@ -22,7 +22,7 @@ router.get('/user', function(req, res, next) {
   res.sendFile(__dirname + '/views/user.html')
 });
 
-/* users registration */
+/* user list */
 router.get('/users', function(req, res, next) {
   res.sendFile(__dirname + '/views/users.html')
 });
@@ -42,14 +42,18 @@ router.get('/secure', function(req, res, next) {
   res.sendFile(__dirname + '/views/secure.html')
 });
 
-// ---
+/* logout - session remove */
+// router.get('/logout', function(req, res, next) {
+//  sessionStorage.removeItem('token');
+//  location.href = '/';
+// });
 
 /* product registration */
 router.get('/product', function(req, res, next) {
   res.sendFile(__dirname + '/views/product.html')
 });
 
-/* products registration */
+/* product list */
 router.get('/products', function(req, res, next) {
   res.sendFile(__dirname + '/views/products.html')
 });
@@ -64,7 +68,6 @@ router.get('/product_put/:pno', function(req, res, next) {
   res.sendFile(__dirname + '/views/product_put.html')
 });
 
-
 // ---
 
 /* naver api login */
@@ -76,6 +79,7 @@ router.get('/login/naver', function(req, res, next) {
 router.get('/callback/naver', function(req, res, next) {
   res.sendFile(__dirname + '/views/callbacknaver.html')
 });
+
 
 
 module.exports = router;

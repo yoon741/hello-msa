@@ -1,4 +1,5 @@
 from pydantic import BaseModel
+from sqlalchemy.cyextension.resultproxy import BaseRow
 
 
 class UserBase(BaseModel):
@@ -16,6 +17,7 @@ class User(UserBase):
     class Config:
         from_attributes=True
 
+
 class UserList(BaseModel):
     userid: str
     name: str
@@ -23,12 +25,13 @@ class UserList(BaseModel):
     regdate: str
 
     class Config:
-        from_attributes=True    # ORM으로 넘어온 데이터를
-                                # pydantic형식으로 쉽게 변환 (pydantic형식 = json형식)
+        from_attributes=True
+
 
 class UserLogin(BaseModel):
     userid: str
     passwd: str
+
 
 class Token(BaseModel):
     access_token: str
